@@ -1,1 +1,41 @@
 @import 'tailwindcss';
+
+@theme {
+  --radius-badge: 10px;
+  --aspect-poster: 2/3;
+  --width-dropdown: 200px;
+  --width-search: 60%;
+}
+
+@utility grid-cast {
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+}
+
+@utility text-display {
+  font-size: var(--text-4xl);
+  line-height: var(--leading-tight);
+  font-weight: 700;
+}
+
+@utility text-title {
+  font-size: var(--text-2xl);
+  line-height: var(--leading-tight);
+  font-weight: 700;
+}
+
+@utility text-heading {
+  font-size: var(--text-xl);
+  line-height: var(--leading-snug);
+  font-weight: 700;
+}
+
+@utility text-caption {
+  font-size: var(--text-sm);
+  color: var(--color-gray-500);
+}
+
+@layer utilities {
+  .focus-ring {
+    @apply outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-gray-400;
+  }
+}

@@ -1,4 +1,4 @@
-import type { Show } from './show';
+import type { Show } from "./show";
 
 export type SearchResultProps = {
   searchQuery: string;

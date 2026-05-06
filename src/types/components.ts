@@ -1,4 +1,4 @@
-import type { SortBy } from './show';
+import type { SortBy } from "./show";
 
 export type SortOption = {
   value: SortBy;

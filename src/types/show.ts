@@ -7,7 +7,7 @@ export type Rating = {
   average: number | null;
 };
 
-export type SortBy = 'rating-asc' | 'rating-desc';
+export type SortBy = "rating-asc" | "rating-desc";
 
 export type Show = {
   readonly id: number;

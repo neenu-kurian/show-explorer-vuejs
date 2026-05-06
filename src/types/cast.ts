@@ -1,4 +1,4 @@
-import type { Image } from './show';
+import type { Image } from "./show";
 
 export type CastMember = {
   person: {

@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from "zod";
 
 export const ImageSchema = z.object({
   medium: z.string().optional(),
@@ -12,7 +12,7 @@ export const ShowDtoSchema = z.object({
     .array(z.string().nullable().catch(null))
     .transform((items) => items.filter((item): item is string => item !== null))
     .catch([]),
-  status: z.string().catch('Unknown'),
+  status: z.string().catch("Unknown"),
   runtime: z.number().nullable().catch(null),
   premiered: z.string().nullable().catch(null),
   rating: z.object({ average: z.number().nullable().catch(null) }).catch({ average: null }),
