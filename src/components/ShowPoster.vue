@@ -7,7 +7,7 @@
     @error="failed = true"
     class="w-full h-full object-cover"
   />
-  <div v-else>
+  <div v-else class="w-full h-full flex items-center justify-center bg-gray-100">
     <slot name="fallback">
       <span>{{ "No Image Available" }}</span>
     </slot>

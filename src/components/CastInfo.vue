@@ -1,11 +1,11 @@
 <template>
+  <h2 class="text-title mt-5 pl-5">Top Cast</h2>
   <AppLoader v-if="castLoading" message="Loading cast..." />
   <div v-else-if="castError" class="text-center" role="alert">
     {{ castError }}
   </div>
-  <div v-else-if="cast.length === 0" class="text-center text-gray-500">No cast available</div>
+  <div v-else-if="cast.length === 0" class="text-left pl-5 mt-5">No cast information available</div>
   <div v-else class="px-5 mb-10">
-    <h2 class="text-title mt-5">Top Cast</h2>
     <div class="grid grid-cast gap-6 mt-5">
       <CastMemberComponent
         v-for="member in castToDisplay"

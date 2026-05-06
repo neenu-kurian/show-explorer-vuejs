@@ -1,6 +1,6 @@
 <template>
   <ShowInfo :show="show" />
-  <CastInfo :show="show" :cast="cast" :castError="castError" :castLoading="castLoading" />
+  <CastInfo :cast="cast" :castError="castError" :castLoading="castLoading" />
 </template>
 
 <script setup lang="ts">

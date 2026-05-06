@@ -35,3 +35,6 @@ coverage
 # Vitest
 __screenshots__/
 .last-run.json
+
+image.png
+image-1.png

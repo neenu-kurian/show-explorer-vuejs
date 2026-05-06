@@ -3,13 +3,11 @@
     <div
       class="relative md:max-w-80 aspect-poster rounded-xl overflow-hidden shadow-lg mx-auto shrink-0"
     >
-      <AppImage :src="show.image?.original" :alt="show.name || 'Show Poster'" loading="eager">
+      <ShowPoster :src="show.image?.original" :alt="show.name || 'Show Poster'" loading="eager">
         <template #fallback>
-          <div role="img" :aria-label="'No poster available for ' + show.name">
-            <PhotoIcon />
-          </div>
+          <PhotoIcon class="w-1/3 h-1/3" />
         </template>
-      </AppImage>
+      </ShowPoster>
       <ShowRating
         v-if="show.rating.average"
         :score="show.rating.average"
@@ -34,7 +32,7 @@
 </template>
 
 <script setup lang="ts">
-import AppImage from "@/components/AppImage.vue";
+import ShowPoster from "@/components/ShowPoster.vue";
 import InfoChip from "@/components/InfoChip.vue";
 import ShowRating from "@/components/ShowRating.vue";
 import type { Show } from "@/types/show";
@@ -46,7 +44,7 @@ const props = defineProps<{
   show: Show;
 }>();
 
-const summaryText = computed(() => htmlToText(props.show.summary ?? ""));
+const summaryText = computed(() => htmlToText(props.show.summary ?? "No description available"));
 const premieredYear = computed(() =>
   props.show.premiered ? new Date(props.show.premiered).getFullYear().toString() : null,
 );

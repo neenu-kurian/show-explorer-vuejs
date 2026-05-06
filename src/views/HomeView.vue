@@ -8,7 +8,7 @@
   </header>
 
   <div class="pl-10 mt-14">
-    <template v-if="searchLoading || hasSearched">
+    <template v-if="searchLoading || hasSearched || searchQuery">
       <SearchResults
         :search-query="searchQuery"
         :shows="shows"

@@ -8,17 +8,15 @@
         <div
           class="w-64 h-96 bg-white rounded-xl hover:-translate-y-1 overflow-hidden relative shadow-xl flex flex-col transition duration-200 ease-in-out"
         >
-          <AppImage
+          <ShowPoster
             :src="show.image?.medium"
             :alt="show.name || 'Show Poster'"
             class="w-full h-full object-cover"
           >
             <template #fallback>
-              <div role="img" :aria-label="'No poster available for ' + show.name" class="h-full">
-                <PhotoIcon />
-              </div>
+              <PhotoIcon class="w-1/3 h-1/3" />
             </template>
-          </AppImage>
+          </ShowPoster>
           <ShowRating
             v-if="show.rating.average"
             :score="show.rating.average"
@@ -37,7 +35,7 @@
 import type { Show } from "@/types/show";
 import { PhotoIcon } from "@heroicons/vue/24/outline";
 import { RouterLink } from "vue-router";
-import AppImage from "./AppImage.vue";
+import ShowPoster from "./ShowPoster.vue";
 import ShowRating from "./ShowRating.vue";
 
 defineProps<{

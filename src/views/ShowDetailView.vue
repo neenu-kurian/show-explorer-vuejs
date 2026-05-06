@@ -1,7 +1,7 @@
 <template>
   <div>
     <RouterLink :to="{ name: 'home' }"
-      class="inline-flex ml-3 items-center gap-2 font-medium my-7 cursor-pointer border-none p-0 text-base text-black hover:opacity-70 focus-visible:outline-none focus-ring">
+      class="inline-flex ml-3 items-center gap-2 cursor-pointer font-medium my-7 text-base text-black hover:opacity-70 focus-visible:outline-none focus-ring">
       <ArrowLeftIcon class="w-4 h-4" />
       Back to shows
     </RouterLink>

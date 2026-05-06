@@ -2,6 +2,8 @@
 
 A Vue3 application that displays shows based on genres and allows for searching and exploring TV shows, built with Vue 3 and TypeScript. Discover show details, cast information, and browse collections.
 
+You can find the application here: https://show-explorer-vue.vercel.app/ 
+
 ![alt text](image-1.png)
 ![alt text](image.png)
 
