@@ -1,13 +1,21 @@
 <template>
   <div>
-    <RouterLink :to="{ name: 'home' }"
-      class="inline-flex ml-3 items-center gap-2 cursor-pointer font-medium my-7 text-base text-black hover:opacity-70 focus-visible:outline-none focus-ring">
+    <RouterLink
+      :to="{ name: 'home' }"
+      class="inline-flex ml-3 items-center gap-2 cursor-pointer font-medium my-7 text-base text-black hover:opacity-70 focus-visible:outline-none focus-ring"
+    >
       <ArrowLeftIcon class="w-4 h-4" />
       Back to shows
     </RouterLink>
     <AppLoader v-if="loading" message="Loading show details..." />
     <div v-else-if="error" class="text-center" role="alert">{{ error }}</div>
-    <ShowDetailContent v-else-if="show" :show="show" :cast="cast" :castError="castError" :castLoading="castLoading" />
+    <ShowDetailContent
+      v-else-if="show"
+      :show="show"
+      :cast="cast"
+      :castError="castError"
+      :castLoading="castLoading"
+    />
   </div>
 </template>
 

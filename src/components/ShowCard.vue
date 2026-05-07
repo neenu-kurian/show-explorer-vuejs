@@ -14,7 +14,7 @@
             class="w-full h-full object-cover"
           >
             <template #fallback>
-              <PhotoIcon class="w-1/3 h-1/3" />
+              <PhotoIcon class="w-1/3 h-1/3" role="img" aria-label="No Image Available" />
             </template>
           </ShowPoster>
           <ShowRating

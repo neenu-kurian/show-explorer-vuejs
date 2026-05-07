@@ -1,0 +1,30 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`SearchInput.vue > matches snapshot 1`] = `
+<div>
+  <form
+    class="flex items-center gap-6 rounded-md px-4 py-2 w-full md:w-search bg-gray-100 outline-none"
+    data-v-54e32457=""
+    role="search"
+  >
+    
+    <div
+      class="w-8 h-8 flex-none"
+      data-testid="search-icon"
+      data-v-54e32457=""
+    />
+    
+    <input
+      aria-label="Search shows"
+      autocomplete="off"
+      class="w-full bg-transparent text-base text-gray-900 p-0 rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-gray-400 appearance-none"
+      data-v-54e32457=""
+      maxlength="80"
+      name="search-input"
+      placeholder="Search for TV shows..."
+      type="search"
+      value=""
+    />
+  </form>
+</div>
+`;

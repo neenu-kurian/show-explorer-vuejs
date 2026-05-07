@@ -5,7 +5,7 @@
     >
       <ShowPoster :src="show.image?.original" :alt="show.name || 'Show Poster'" loading="eager">
         <template #fallback>
-          <PhotoIcon class="w-1/3 h-1/3" />
+          <PhotoIcon class="w-1/3 h-1/3" role="img" aria-label="No Image Available" />
         </template>
       </ShowPoster>
       <ShowRating

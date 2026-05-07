@@ -2,10 +2,15 @@
 
 A Vue3 application that displays shows based on genres and allows for searching and exploring TV shows, built with Vue 3 and TypeScript. Discover show details, cast information, and browse collections.
 
-You can find the application here: https://show-explorer-vue.vercel.app/ 
+You can find the application here: https://show-explorer-vuejs.vercel.app/ 
 
-![alt text](image-1.png)
-![alt text](image.png)
+### Home Page
+![alt text](screenshots/homePage.png)
+---
+
+### Details Page
+![alt text](screenshots/detailsPage.png)
+
 
 ## Tech Stack & Architecture Decisions
 
@@ -16,7 +21,7 @@ You can find the application here: https://show-explorer-vue.vercel.app/
  * *Pinia*: Manages global state with a focus on simplicity and TypeScript support.
  * *Tailwind CSS*: Handles styling through utility classes.
  * *Zod*: Validates API data to ensure it matches expected formats.
- * *Vitest & Playwright*: Used for unit and end-to-end testing.
+ * *Vitest*: Used for unit testing.
 ## Project Structure
  * *components/*: Reusable UI elements.
  * *composables/*: Reusable logic and functions.
@@ -26,6 +31,8 @@ You can find the application here: https://show-explorer-vue.vercel.app/
  * *types/*: TypeScript definitions.
  * *shared/*: Common utilities and helpers.
  * *router/*: route definitions
+ * *tests/*: unit tests
+
 
 ### Testing & Code Quality
 - **ESLint + Prettier** — Enforced code standards and formatting.
@@ -38,8 +45,8 @@ This project was developed using:
 
 1. Clone the repository:
    ```bash
-   git clone git@github.com:neenu-kurian/Show-Explorer-Vue.git
-   cd show-explorer-vue
+   git clone git@github.com:neenu-kurian/show-explorer-vuejs.git
+   cd show-explorer-vuejs
    ```
 
 2. Install dependencies:
@@ -70,6 +77,7 @@ Creates an optimized build in the `dist/` directory.
 | `npm run type-check` | Run TypeScript compiler |
 | `npm run lint` | Lint code |
 | `npm run format` | Format code with Prettier |
+| `npm run test` | Run unit tests |
 
 ## Key Features
  * *Data Reliability*: Uses Zod and TypeScript to catch data errors early.

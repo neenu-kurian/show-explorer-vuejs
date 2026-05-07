@@ -1,0 +1,110 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ShowDetail.vue > matches snapshot 1`] = `
+<div>
+  <div>
+    <a
+      class="inline-flex ml-3 items-center gap-2 cursor-pointer font-medium my-7 text-base text-black hover:opacity-70 focus-visible:outline-none focus-ring"
+      href="/"
+    >
+      
+      <svg
+        aria-hidden="true"
+        class="w-4 h-4"
+        data-slot="icon"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+       Back to shows 
+      
+    </a>
+    
+    <div
+      class="p-5 md:flex gap-6"
+    >
+      <div
+        class="relative md:max-w-80 aspect-poster rounded-xl overflow-hidden shadow-lg mx-auto shrink-0"
+      >
+        <img
+          alt="The Wire"
+          class="w-full h-full object-cover"
+          loading="eager"
+          src="https://static.tvmaze.com/uploads/images/original_untouched/504/1260189.jpg"
+        />
+        <span
+          class="top-3 left-2 bg-black/80 px-2.5 py-1.5 rounded-badge"
+          data-testid="show-rating"
+        />
+      </div>
+      <div
+        class="flex-1"
+      >
+        <h1
+          class="text-display text-black mb-3"
+        >
+          The Wire
+        </h1>
+        <div
+          class="flex gap-2 mb-4 flex-wrap"
+        >
+          <!--v-if-->
+          <span
+            data-testid="info-chip"
+          />
+          <span
+            data-testid="info-chip"
+          />
+        </div>
+        <div
+          class="flex gap-2 mb-4 flex-wrap"
+        >
+          
+          <span
+            data-testid="info-chip"
+          />
+          <span
+            data-testid="info-chip"
+          />
+          
+        </div>
+        <div
+          class="mb-8 leading-relaxed text-black whitespace-pre-line"
+        >
+          The first season of The Wire (2002) concentrated on the often-futile efforts of police to infiltrate a West Baltimore drug ring headed by Avon Barksdale and his lieutenant, Stringer Bell. In Seasons Two and Three, as the Barksdale investigation escalated, new storylines involving pressures on the working class and the city's political leadership were introduced. Season Four focused on the stories of several young boys in the public school system, struggling with problems at home and the lure of the corner - set against the rise of a new drug empire in West Baltimore and a new Mayor in City Hall. The fifth and final season of The Wire centers on the media's role in addressing - or failing to address - the fundamental political, economic and social realities depicted over the course of the series, while also resolving storylines of the numerous characters woven throughout the narrative arc of the show.
+        </div>
+      </div>
+    </div>
+    
+    <h2
+      class="text-title mt-5 pl-5"
+    >
+      Top Cast
+    </h2>
+    <div
+      class="flex flex-col items-center justify-center mt-24"
+      role="status"
+    >
+      <div
+        aria-hidden="true"
+        class="w-16 h-16 border-4 border-gray-200 border-t-gray-600 rounded-full animate-spin"
+      />
+      <p
+        class="text-center mt-4"
+      >
+        Loading cast...
+      </p>
+    </div>
+    
+    
+  </div>
+</div>
+`;

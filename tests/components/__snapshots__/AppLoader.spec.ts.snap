@@ -1,0 +1,20 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`AppLoader.vue > matches snapshot 1`] = `
+<div>
+  <div
+    class="flex flex-col items-center justify-center mt-24"
+    role="status"
+  >
+    <div
+      aria-hidden="true"
+      class="w-16 h-16 border-4 border-gray-200 border-t-gray-600 rounded-full animate-spin"
+    />
+    <p
+      class="text-center mt-4"
+    >
+      Loading...
+    </p>
+  </div>
+</div>
+`;

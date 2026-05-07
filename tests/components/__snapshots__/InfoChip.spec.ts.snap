@@ -1,0 +1,18 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`InfoChip.vue > matches snapshot 1`] = `
+<div>
+  <div
+    class="inline-flex gap-2 items-center bg-gray-100 rounded-full px-3 py-1 text-sm"
+  >
+    <span>
+      Duration
+    </span>
+    <span
+      class="font-bold"
+    >
+      60m
+    </span>
+  </div>
+</div>
+`;

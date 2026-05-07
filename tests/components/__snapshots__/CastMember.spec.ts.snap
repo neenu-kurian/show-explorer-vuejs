@@ -1,0 +1,28 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`CastMember.vue > matches snapshot 1`] = `
+<div>
+  <article
+    class="flex items-center flex-col text-center gap-1 p-1"
+  >
+    <div
+      class="w-32 h-32 rounded-full overflow-hidden border-2 border-white shadow-sm"
+    >
+      <img
+        alt="Sonja Sohn"
+        class="w-full h-full object-cover"
+        loading="lazy"
+        src="https://static.tvmaze.com/uploads/images/medium_portrait/4/10304.jpg"
+      />
+    </div>
+    <div>
+      Sonja Sohn 
+      <div
+        class="text-caption"
+      >
+        Det. Shakima "Kima" Greggs
+      </div>
+    </div>
+  </article>
+</div>
+`;

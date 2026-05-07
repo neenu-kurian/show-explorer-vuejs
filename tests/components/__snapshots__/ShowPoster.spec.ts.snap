@@ -1,0 +1,12 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ShowPoster.vue > matches snapshot 1`] = `
+<div>
+  <img
+    alt="Glee Image"
+    class="w-full h-full object-cover"
+    loading="lazy"
+    src="https://static.tvmaze.com/uploads/images/original_untouched/0/73.jpg"
+  />
+</div>
+`;
