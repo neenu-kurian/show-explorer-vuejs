@@ -27,13 +27,5 @@ coverage
 
 .eslintcache
 
-# Cypress
-/cypress/videos/
-/cypress/screenshots/
-
 # Vitest
-__screenshots__/
 .last-run.json
-
-image.png
-image-1.png
