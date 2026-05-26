@@ -7,10 +7,11 @@ import { computed, onUnmounted, ref } from "vue";
 export function useDebouncedSearch() {
   const searchStore = useSearchStore();
   const searchLoading = ref(false);
-  const hasSearched = ref(false);
   const { searchQuery, searchResult } = storeToRefs(searchStore);
   let searchTimeout: ReturnType<typeof setTimeout> | null = null;
   let abortController: AbortController | null = null;
+  const hasSearched = ref(!!searchResult.value);
+  let latestRequestId = 0;
 
   const shows = computed(() => {
     if (!searchResult.value?.ok) return [];
@@ -21,6 +22,8 @@ export function useDebouncedSearch() {
     if (!searchResult.value || searchResult.value.ok) return null;
     return getErrorMessage(searchResult.value.error);
   });
+
+  const isSearchActive = computed(() => searchLoading.value || hasSearched.value);
 
   const cancelPending = () => {
     if (searchTimeout) {
@@ -39,10 +42,12 @@ export function useDebouncedSearch() {
       clearSearch();
       return;
     }
+    const currentRequestId = ++latestRequestId;
     searchTimeout = setTimeout(async () => {
       searchLoading.value = true;
       abortController = new AbortController();
       await searchStore.searchShows(searchQuery.value, abortController.signal);
+      if (currentRequestId !== latestRequestId) return;
       searchLoading.value = false;
       hasSearched.value = true;
     }, SEARCH_TIMEOUT);
@@ -61,8 +66,9 @@ export function useDebouncedSearch() {
     searchLoading,
     hasSearched,
     handleSearch,
-    clearSearch,
+    isSearchActive,
     shows,
+    clearSearch,
     searchError,
   };
 }

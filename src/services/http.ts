@@ -1,7 +1,8 @@
+import { TIMEOUT } from "@/constants";
 import type { Result } from "@/types/result";
 
 export async function apiFetch(url: string, signal?: AbortSignal): Promise<Result<unknown>> {
-  const signals = [AbortSignal.timeout(5000)];
+  const signals = [AbortSignal.timeout(TIMEOUT)];
   if (signal) signals.push(signal);
   const combinedSignal = AbortSignal.any(signals);
   try {
@@ -18,7 +19,10 @@ export async function apiFetch(url: string, signal?: AbortSignal): Promise<Resul
       return { ok: false, error: { type: "ABORTED" } };
     }
     if (err instanceof DOMException && err.name === "TimeoutError") {
-      return { ok: false, error: { type: "TIMEOUT", message: "Request timed out" } };
+      return { ok: false, error: { type: "TIMEOUT"} };
+    }
+    if(err instanceof SyntaxError) {
+      return { ok: false, error: { type: "PARSE"} };
     }
     return {
       ok: false,

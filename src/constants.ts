@@ -20,4 +20,7 @@ export const SHOW_ERRORS = {
   SHOW_FETCH_ERROR: "Failed to load shows. Please try again later.",
   NETWORK_ERROR: "No internet connection. Please check your connection and try again.",
   REQUEST_TIMEOUT: "The request took too long. Please try again later.",
+  RESPONSE_PARSE_ERROR: "Received unexpected data. Please try again later.",
 } satisfies Readonly<Record<string, string>>;
+
+export const TIMEOUT = 10000;

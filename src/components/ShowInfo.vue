@@ -24,9 +24,7 @@
       <div v-if="show.genres.length" class="flex gap-2 mb-4 flex-wrap">
         <InfoChip v-for="genre in show.genres" :key="genre" :label="genre" />
       </div>
-      <div class="mb-8 leading-relaxed text-black whitespace-pre-line">
-        {{ summaryText }}
-      </div>
+      <div class="mb-8 leading-relaxed text-black whitespace-pre-line" v-html="summaryText"></div>
     </div>
   </div>
 </template>
@@ -36,7 +34,6 @@ import ShowPoster from "@/components/ShowPoster.vue";
 import InfoChip from "@/components/InfoChip.vue";
 import ShowRating from "@/components/ShowRating.vue";
 import type { Show } from "@/types/show";
-import { htmlToText } from "@/shared/htmlToText";
 import { computed } from "vue";
 import { PhotoIcon } from "@heroicons/vue/24/outline";
 
@@ -44,7 +41,7 @@ const props = defineProps<{
   show: Show;
 }>();
 
-const summaryText = computed(() => htmlToText(props.show.summary ?? "No description available"));
+const summaryText = computed(() => props.show.summary ?? "No description available");
 const premieredYear = computed(() =>
   props.show.premiered ? new Date(props.show.premiered).getFullYear().toString() : null,
 );

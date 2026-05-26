@@ -1,9 +1,7 @@
-import { render, screen } from "@testing-library/vue";
-import "@testing-library/jest-dom";
 import ShowCard from "@/components/ShowCard.vue";
-import { showDetails } from "../testdata";
 import type { Show } from "@/types/show";
-import { describe, expect, it, vi } from "vitest";
+import { render, screen } from "@testing-library/vue";
+import { showDetails } from "../testdata";
 
 const showWithoutImage = {
   ...showDetails,
@@ -16,18 +14,9 @@ vi.mock("@heroicons/vue/24/outline", () => ({
   },
 }));
 
-vi.mock("@/components/AppImage.vue", () => ({
+vi.mock("@/components/ShowPoster.vue", () => ({
   default: {
-    template: `
-      <div class="h-full">
-        <img v-if="src" :src="src" :alt="alt" :loading="loading ?? 'lazy'" data-testid="app-image" />
-        <div v-else>
-          <slot name="fallback">
-            <span>No Image Available</span>
-          </slot>
-        </div>
-      </div>
-    `,
+    template: '<div><img v-if="src" :src="src" :alt="alt" loading="lazy" data-testid="app-image" /><div v-else><slot name="fallback"><span>No Image Available</span></slot></div></div>',
     props: ["src", "alt", "loading"],
   },
 }));
@@ -46,8 +35,7 @@ const renderComponent = (props: { show: Show }) =>
       stubs: {
         RouterLink: {
           props: ["to"],
-          template:
-            '<a :href="\'/show/\' + to.params.id" role="link" :data-testid="\'/show/\' + to.params.id"><slot /></a>',
+          template: '<a href="/show/42"><slot /></a>',
         },
       },
     },

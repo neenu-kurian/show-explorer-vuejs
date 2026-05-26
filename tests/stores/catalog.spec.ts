@@ -1,8 +1,8 @@
-import { useCatalogStore } from "@/stores/catalog";
-import { createPinia, setActivePinia } from "pinia";
-import { beforeEach, describe, expect, it, vi } from "vitest";
-import { mockShows } from "../testdata";
 import { fetchShows } from "@/services/shows";
+import { useCatalogStore } from "@/stores/catalog";
+import type { CategorizedShows } from "@/types/show";
+import { createPinia, setActivePinia } from "pinia";
+import { mockShows } from "../testdata";
 
 vi.mock("@/services/shows", () => ({
   fetchShows: vi.fn(),
@@ -27,23 +27,20 @@ describe("catalogStore", () => {
 
   it("fetches and categorizes shows on success", async () => {
     fetchMock.mockResolvedValueOnce({ ok: true, data: mockShows });
-
     await store.getShowsByCategory();
-
-    expect(store.showsByCategory?.ok).toBe(true);
-    if (!store.showsByCategory || !store.showsByCategory.ok) {
-      throw new Error("Expected successful result");
-    }
-    expect(store.showsByCategory.data).toHaveProperty("Drama");
-    expect(store.showsByCategory.data["Drama"]).toHaveLength(2);
+    const result = store.showsByCategory;
+    expect(result?.ok).toBe(true);
+    const data = (store.showsByCategory as { ok: true; data: CategorizedShows }).data;
+    expect(data).toHaveProperty("Drama");
+    expect(data["Drama"]).toHaveLength(2);
   });
 
   it("stores error result on fetch failure", async () => {
     fetchMock.mockResolvedValueOnce({ ok: false, error: { type: "SERVER", status: 500 } });
-
     await store.getShowsByCategory();
-
-    expect(store.showsByCategory?.ok).toBe(false);
+    expect(store.showsByCategory).toEqual(
+      expect.objectContaining({ ok: false })
+    );
   });
 
   describe("sortedShows getter", () => {
@@ -54,33 +51,27 @@ describe("catalogStore", () => {
 
     it("sorts by rating descending by default", () => {
       const sorted = store.sortedShows;
-
-      if (!sorted || !sorted.ok) {
-        throw new Error("Expected successful result");
-      }
-      expect(sorted.ok).toBe(true);
-      const ratings = sorted.data["Drama"]!.map((eachitem) => eachitem.rating.average);
+      expect(sorted?.ok).toBe(true);
+      const data = (sorted as { ok: true, data: CategorizedShows }).data;
+      const ratings = data["Drama"].map((eachitem) => eachitem.rating.average);
       expect(ratings).toEqual([8.0, 6.0]);
     });
 
     it("sorts by rating ascending when changed", () => {
       store.sortBy = "rating-asc";
-
       const sorted = store.sortedShows;
-      if (!sorted || !sorted.ok) {
-        throw new Error("Expected successful result");
-      }
-      expect(sorted.ok).toBe(true);
-      const ratings = sorted.data["Drama"]!.map((s) => s.rating.average);
+      expect(sorted?.ok).toBe(true);
+      const data = (sorted as { ok: true, data: CategorizedShows }).data;
+      const ratings = data["Drama"].map((s) => s.rating.average);
       expect(ratings).toEqual([6.0, 8.0]);
     });
 
     it("passes through error state without sorting", async () => {
       fetchMock.mockResolvedValueOnce({ ok: false, error: { type: "NETWORK" } });
       await store.getShowsByCategory();
-
-      const sorted = store.sortedShows;
-      expect(sorted?.ok).toBe(false);
+      expect(store.sortedShows).toEqual(
+        expect.objectContaining({ ok: false })
+      );
     });
   });
 });

@@ -5,11 +5,18 @@ exports[`SearchResults.vue > matches snapshot 1`] = `
   <div
     class="px-5 py-10"
   >
-    <div>
-      <div
-        data-testid="app-loader"
-      />
-    </div>
+    <ul
+      class="flex gap-3 flex-wrap list-none p-0 m-0"
+    >
+      
+      <li>
+        <div />
+      </li>
+      <li>
+        <div />
+      </li>
+      
+    </ul>
   </div>
 </div>
 `;

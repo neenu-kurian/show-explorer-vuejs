@@ -100,12 +100,16 @@ exports[`HomeView.vue > matches snapshot 1`] = `
     class="pl-10 mt-14"
   >
     
-    <section>
+    
+    <section
+      aria-labelledby="genre-Music"
+    >
       <div
         class="flex items-center gap-2 mb-4"
       >
         <h2
           class="text-heading text-gray-900"
+          id="genre-Music"
         >
           Music
         </h2>
@@ -145,6 +149,55 @@ exports[`HomeView.vue > matches snapshot 1`] = `
         
       </ul>
     </section>
+    <section
+      aria-labelledby="genre-Drama"
+    >
+      <div
+        class="flex items-center gap-2 mb-4"
+      >
+        <h2
+          class="text-heading text-gray-900"
+          id="genre-Drama"
+        >
+          Drama
+        </h2>
+        <svg
+          aria-hidden="true"
+          class="w-5 h-5 text-gray-600"
+          data-slot="icon"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </div>
+      <ul
+        class="flex gap-5 overflow-x-auto scroll-smooth pb-4 w-full list-none p-0 m-0"
+      >
+        
+        <li>
+          <div
+            class="show-card"
+            data-testid="show-card"
+          />
+        </li>
+        <li>
+          <div
+            class="show-card"
+            data-testid="show-card"
+          />
+        </li>
+        
+      </ul>
+    </section>
+    
     
   </div>
   

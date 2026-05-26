@@ -8,7 +8,7 @@
   </header>
 
   <div class="pl-10 mt-14">
-    <template v-if="searchLoading || hasSearched || searchQuery">
+    <template v-if="isSearchActive">
       <SearchResults
         :search-query="searchQuery"
         :shows="shows"
@@ -34,6 +34,6 @@ import { sortOptions } from "@/constants";
 import { storeToRefs } from "pinia";
 
 const { sortBy } = storeToRefs(useCatalogStore());
-const { searchQuery, shows, searchError, searchLoading, hasSearched, handleSearch } =
+const { searchQuery, shows, searchError, isSearchActive, searchLoading, hasSearched, handleSearch } =
   useDebouncedSearch();
 </script>

@@ -1,4 +1,3 @@
-import { describe, it, expect } from "vitest";
 import { htmlToText } from "@/shared/htmlToText";
 
 describe("htmlToText", () => {

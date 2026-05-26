@@ -28,23 +28,11 @@ exports[`SortDropDown.vue > matches snapshot 1`] = `
       </option>
       
     </select>
-    <svg
+    <span
       aria-hidden="true"
       class="absolute right-3 w-4 h-4 text-gray-500 pointer-events-none shrink-0"
-      data-slot="icon"
       data-v-958fad9e=""
-      fill="none"
-      stroke="currentColor"
-      stroke-width="1.5"
-      viewBox="0 0 24 24"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="m19.5 8.25-7.5 7.5-7.5-7.5"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-    </svg>
+    />
   </div>
 </div>
 `;

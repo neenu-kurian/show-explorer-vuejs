@@ -37,6 +37,36 @@ export const showsByCategory: Result<CategorizedShows> = {
           "<p><b>Nashville</b> is set against the backdrop of the city's music scene and follows Rayna Jaymes and Juliette Barnes. Both women face personal and professional challenges as they navigate their paths as artists and individuals. Surrounding them, and often complicating their lives, are their family, friends and, in some cases, lovers, as well as the up-and-coming performers and songwriters trying to get ahead in the business. Music City can mean so many things to different people. In Nashville, musicians and songwriters are at the heart of the storm driven by their own ambitions. Some are fueled by their creativity and passion for fame. Others struggle to cope with the pressures of success and are doing everything in their power to stay on top.</p>",
       },
     ],
+    Drama: [
+      {
+        id: 8,
+        name: "Glee",
+        genres: ["Drama", "Music", "Romance"],
+        status: "Ended",
+        rating: { average: 6.7 },
+        image: {
+          original: "https://static.tvmaze.com/uploads/images/original_untouched/0/73.jpg",
+        },
+        runtime: 60,
+        premiered: "2009-05-19",
+        summary:
+          "<p><b>Glee </b>is a musical comedy about a group of ambitious and talented young adults in search of strength, acceptance and, ultimately, their voice.</p>",
+      },
+      {
+        id: 53,
+        name: "Nashville",
+        genres: ["Drama", "Music", "Romance"],
+        status: "Ended",
+        rating: { average: 7.4 },
+        image: {
+          original: "https://static.tvmaze.com/uploads/images/original_untouched/89/224913.jpg",
+        },
+        runtime: 60,
+        premiered: "2012-10-10",
+        summary:
+          "<p><b>Nashville</b> is set against the backdrop of the city's music scene and follows Rayna Jaymes and Juliette Barnes. Both women face personal and professional challenges as they navigate their paths as artists and individuals. Surrounding them, and often complicating their lives, are their family, friends and, in some cases, lovers, as well as the up-and-coming performers and songwriters trying to get ahead in the business. Music City can mean so many things to different people. In Nashville, musicians and songwriters are at the heart of the storm driven by their own ambitions. Some are fueled by their creativity and passion for fame. Others struggle to cope with the pressures of success and are doing everything in their power to stay on top.</p>",
+      },
+    ],
   },
 };
 
@@ -109,7 +139,7 @@ export const sortOptions: SortOption[] = [
   { value: "rating-asc", label: "Rating: Low to High" },
 ];
 
-export const shows = showsByCategory.data.Music || [];
+export const shows = (showsByCategory).data.Music || [];
 
 export const searchResults = [
   {
@@ -173,7 +203,10 @@ export const mockShows: Show[] = [
     runtime: 60,
     premiered: "2020-01-01",
     rating: { average: 8.0 },
-    image: null,
+    image: {
+      medium: "https://example.com/medium.jpg",
+      original: "https://example.com/original.jpg",
+    },
     summary: null,
   },
   {
@@ -184,7 +217,10 @@ export const mockShows: Show[] = [
     runtime: 30,
     premiered: "2019-01-01",
     rating: { average: 6.0 },
-    image: null,
+    image: {
+      medium: "https://example.com/medium.jpg",
+      original: "https://example.com/original.jpg",
+    },
     summary: null,
   },
 ];

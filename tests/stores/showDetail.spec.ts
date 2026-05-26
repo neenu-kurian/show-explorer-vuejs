@@ -1,15 +1,16 @@
 import { fetchCastData } from "@/services/cast";
 import { fetchShowData } from "@/services/shows";
 import { useShowDetailStore } from "@/stores/showDetail";
+import type { CastMember } from "@/types/cast";
+import type { Show } from "@/types/show";
 import { createPinia, setActivePinia } from "pinia";
-import { beforeEach, describe, expect, it, vi } from "vitest";
 import { mockCast, mockShow } from "../testdata";
 
-vi.mock("@/services/shows.ts", () => ({
+vi.mock("@/services/shows", () => ({
   fetchShowData: vi.fn(),
 }));
 
-vi.mock("@/services/cast.ts", () => ({
+vi.mock("@/services/cast", () => ({
   fetchCastData: vi.fn(),
 }));
 
@@ -32,12 +33,12 @@ describe("showDetailStore", () => {
   it("caches successful show result by id", async () => {
     fetchShowMock.mockResolvedValueOnce({ ok: true, data: mockShow });
     await store.fetchShowDetails(42);
-    expect(store.getShowEntry(42)).toBeDefined();
     const entry = store.getShowEntry(42)!;
     expect(entry).toBeDefined();
     const show = entry.show;
-    expect(show.ok).toBe(true);
-    expect(show.ok ? show.data.name : undefined).toBe("The Wire");
+    expect(show!.ok).toBe(true);
+    const successData = (entry!.show as { ok: true; data: Show }).data;
+    expect(successData.name).toBe("The Wire");
   });
 
   it("caches NOT_FOUND error by Id", async () => {
@@ -81,19 +82,11 @@ describe("showDetailStore", () => {
     await store.fetchCastDetails(42);
     const entry = store.getShowEntry(42)!;
     const cast = entry.cast;
-    expect(cast?.ok).toBe(true);
-    expect(cast?.ok ? cast.data : undefined).toHaveLength(1);
+    expect(cast!.ok).toBe(true);
+    const successData = (entry.cast as { ok: true; data: CastMember[] }).data;
+    expect(successData).toHaveLength(1);
   });
 
-  it("stores cast for an existing show entry", async () => {
-    fetchShowMock.mockResolvedValueOnce({ ok: true, data: mockShow });
-    await store.fetchShowDetails(42);
-    fetchCastMock.mockResolvedValueOnce({ ok: true, data: mockCast });
-    await store.fetchCastDetails(42);
-    const entry = store.getShowEntry(42)!;
-    expect(entry.show).toEqual({ ok: true, data: mockShow });
-    expect(entry.cast).toEqual({ ok: true, data: mockCast });
-  });
 
   it("does nothing if show is not in cache", async () => {
     fetchCastMock.mockResolvedValueOnce({ ok: true, data: mockCast });

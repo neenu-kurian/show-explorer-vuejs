@@ -1,7 +1,5 @@
-import { render, screen } from "@testing-library/vue";
 import SearchInput from "@/components/SearchInput.vue";
-import "@testing-library/jest-dom";
-import { describe, expect, it, vi } from "vitest";
+import { render, screen } from "@testing-library/vue";
 
 vi.mock("@heroicons/vue/24/outline", () => ({
   MagnifyingGlassIcon: {

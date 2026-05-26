@@ -6,11 +6,11 @@ import { computed, onMounted, onUnmounted, ref } from "vue";
 export function useCatalog() {
   const catalogStore = useCatalogStore();
   const { sortedShows, sortBy, showsByCategory } = storeToRefs(catalogStore);
-  const loading = ref(true);
+  const loading = ref(!showsByCategory.value);
   let abortController: AbortController | null = null;
 
   const catalogData = computed(() => {
-    if (!sortedShows.value?.ok) return {};
+    if (!sortedShows.value?.ok) return null;
     return sortedShows.value.data;
   });
 
@@ -18,6 +18,11 @@ export function useCatalog() {
     if (!sortedShows.value || sortedShows.value.ok) return null;
     return getErrorMessage(sortedShows.value.error);
   });
+
+  const isEmpty = computed(() => {
+  if (!catalogData.value) return false;
+  return Object.keys(catalogData.value).length === 0;
+});
 
   onMounted(async () => {
     if (!showsByCategory.value) {
@@ -36,5 +41,5 @@ export function useCatalog() {
     }
   };
   onUnmounted(cancelPending);
-  return { sortBy, loading, error, catalogData };
+  return { sortBy, loading, error, catalogData, isEmpty };
 }

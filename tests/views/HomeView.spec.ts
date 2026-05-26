@@ -1,10 +1,8 @@
-import { render, screen, waitFor } from "@testing-library/vue";
-import HomeView from "@/views/HomeView.vue";
-import { createPinia, setActivePinia } from "pinia";
 import { useCatalogStore } from "@/stores/catalog";
+import HomeView from "@/views/HomeView.vue";
+import { render, screen, waitFor } from "@testing-library/vue";
+import { createPinia, setActivePinia } from "pinia";
 import { showsByCategory } from "../testdata";
-import "@testing-library/jest-dom";
-import { beforeEach, describe, expect, it, vi } from "vitest";
 
 vi.mock("@/components/ShowCard.vue", () => ({
   default: {
@@ -18,17 +16,21 @@ const renderComponent = (props = {}) =>
     props,
     global: {
       stubs: {
-        RouterLink: true,
+        RouterLink: {
+          template: '<a :href="to"><slot /></a>',
+          props: ["to"]
+        },
       },
     },
   });
 
 describe("HomeView.vue", () => {
+  let catalogStore: ReturnType<typeof useCatalogStore>;
   beforeEach(() => {
     setActivePinia(createPinia());
+    catalogStore = useCatalogStore();
   });
   it("matches snapshot", async () => {
-    const catalogStore = useCatalogStore();
     catalogStore.$patch({ showsByCategory });
     const { container } = renderComponent();
     await screen.findByRole("heading", { name: "Music" });
@@ -36,16 +38,14 @@ describe("HomeView.vue", () => {
   });
 
   it("displays the loader", async () => {
-    const catalogStore = useCatalogStore();
     catalogStore.$patch({
       showsByCategory: null,
     });
     renderComponent();
-    expect(await screen.findByText("Loading shows...")).toBeInTheDocument();
+    expect(await screen.findByText(/Loading shows/i)).toBeInTheDocument();
   });
 
   it("displays shows by category when not searching", async () => {
-    const catalogStore = useCatalogStore();
     catalogStore.$patch({ showsByCategory });
     renderComponent();
     const categoryData = showsByCategory.ok ? showsByCategory.data : {};
@@ -57,7 +57,6 @@ describe("HomeView.vue", () => {
   });
 
   it('displays "No shows found" when there are no shows', async () => {
-    const catalogStore = useCatalogStore();
     vi.spyOn(catalogStore, "getShowsByCategory").mockResolvedValue(undefined);
     catalogStore.$patch({
       showsByCategory: { ok: true, data: {} },

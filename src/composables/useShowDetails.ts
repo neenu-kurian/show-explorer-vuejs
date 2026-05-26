@@ -5,10 +5,9 @@ import { computed, onUnmounted, ref } from "vue";
 export function useShowDetails(showId: number) {
   const showStore = useShowDetailStore();
   const loading = ref(true);
+  const showEntry = computed(() => showStore.getShowEntry(showId));
   const castLoading = ref(false);
   let abortController: AbortController | null = null;
-
-  const showEntry = computed(() => showStore.getShowEntry(showId));
 
   const error = computed(() => {
     const entry = showEntry.value;
@@ -18,7 +17,7 @@ export function useShowDetails(showId: number) {
 
   const castError = computed(() => {
     const entry = showEntry.value;
-    if (!entry || !entry.cast || entry.cast.ok) return null;
+    if (!entry?.cast || entry.cast.ok) return null;
     return getErrorMessage(entry.cast.error);
   });
 
@@ -35,11 +34,14 @@ export function useShowDetails(showId: number) {
 
   const cast = computed(() => {
     const entry = showEntry.value;
-    if (!entry || !entry.cast || !entry.cast.ok) return [];
+    if (!entry?.cast || !entry.cast.ok) return [];
     return entry.cast.data;
   });
 
   const fetchShow = async () => {
+    const showNeedsFetch =
+      !showEntry.value ||
+      (!showEntry.value.show.ok && showEntry.value.show.error.type !== "NOT_FOUND");
     loading.value = true;
     if (abortController) {
       abortController.abort();
@@ -47,10 +49,7 @@ export function useShowDetails(showId: number) {
     }
     abortController = new AbortController();
     const signal = abortController.signal;
-    const showEntry = showStore.getShowEntry(showId);
-    const showNeedsFetch =
-      !showEntry || (!showEntry.show.ok && showEntry.show.error.type !== "NOT_FOUND");
-    const castNeedsFetch = !showEntry?.cast;
+    const castNeedsFetch = !showEntry.value?.cast && showEntry.value?.show.ok;
 
     if (showNeedsFetch) {
       await showStore.fetchShowDetails(showId, signal);
@@ -82,8 +81,8 @@ export function useShowDetails(showId: number) {
   return {
     show,
     cast,
-    loading,
     error,
+    loading,
     castError,
     castLoading,
     isNotFound,

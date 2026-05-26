@@ -1,6 +1,6 @@
 import type { CategorizedShows, Show, SortBy } from "@/types/show";
 
-export function categorizeShows(shows: Show[]): CategorizedShows {
+export function categorizeShows(shows: Show[]) {
   const result: CategorizedShows = {};
   shows.forEach((show) => {
     show.genres.forEach((genre) => {
@@ -11,7 +11,7 @@ export function categorizeShows(shows: Show[]): CategorizedShows {
   return result;
 }
 
-export function sortShows(showsToSort: CategorizedShows, sortBy: SortBy): CategorizedShows {
+export function sortShows(showsToSort: CategorizedShows, sortBy: SortBy) {
   return Object.entries(showsToSort).reduce<CategorizedShows>((acc, [genre, shows]) => {
     acc[genre] = [...shows].sort((show1, show2) => {
       const ratingA = show1.rating.average ?? 0;

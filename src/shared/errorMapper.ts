@@ -17,6 +17,8 @@ export function getErrorMessage(error: ApiError): string | null {
       return null;
     case "TIMEOUT":
       return SHOW_ERRORS.REQUEST_TIMEOUT;
+    case "PARSE":
+      return SHOW_ERRORS.RESPONSE_PARSE_ERROR;
     default:
       const exhaustiveCheck: never = error;
       return exhaustiveCheck;

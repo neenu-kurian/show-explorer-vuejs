@@ -7,13 +7,13 @@ import { ref } from "vue";
 export const useShowDetailStore = defineStore("showDetail", () => {
   const showDetails = ref<Record<number, ShowEntry | undefined>>({});
 
-  async function fetchShowDetails(id: number, signal?: AbortSignal): Promise<void> {
+  async function fetchShowDetails(id: number, signal?: AbortSignal) {
     const result = await fetchShowData(id, signal);
     if (signal?.aborted) return;
     showDetails.value[id] = { show: result, cast: null };
   }
 
-  async function fetchCastDetails(id: number, signal?: AbortSignal): Promise<void> {
+  async function fetchCastDetails(id: number, signal?: AbortSignal){
     const result = await fetchCastData(id, signal);
     if (signal?.aborted) return;
     const entry = showDetails.value[id];
@@ -22,7 +22,7 @@ export const useShowDetailStore = defineStore("showDetail", () => {
     }
   }
 
-  function getShowEntry(id: number): ShowEntry | undefined {
+  function getShowEntry(id: number) {
     return showDetails.value[id];
   }
 

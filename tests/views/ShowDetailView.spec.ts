@@ -1,9 +1,7 @@
-import { render, screen, waitFor } from "@testing-library/vue";
-import { showDetails } from "../testdata";
-import { createPinia, setActivePinia } from "pinia";
-import "@testing-library/jest-dom";
 import ShowDetailView from "@/views/ShowDetailView.vue";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { render, screen, waitFor } from "@testing-library/vue";
+import { createPinia, setActivePinia } from "pinia";
+import { showDetails } from "../testdata";
 
 vi.mock("@/services/shows", () => ({
   fetchShowData: vi.fn(),
@@ -19,11 +17,15 @@ const mockReplace = vi.fn();
 
 vi.mock("vue-router", () => ({
   useRouter: () => ({ back: mockBack, replace: mockReplace }),
-  RouterLink: { template: "<a><slot /></a>" },
+  useRoute: () => ({
+    params: { id: "42" },
+  }),
+  RouterLink: { template: '<a :href="to"><slot /></a>', props: ["to"] },
 }));
 
-import { fetchShowData } from "@/services/shows";
 import { fetchCastData } from "@/services/cast";
+import { fetchShowData } from "@/services/shows";
+import { RouterLink } from "vue-router";
 
 vi.mock("@/components/ArrowLeftIcon.vue", () => ({
   default: { template: '<div data-testid="arrow-left-icon"></div>' },
@@ -65,37 +67,35 @@ const renderComponent = (id = 42) =>
   render(ShowDetailView, {
     props: { id },
     global: {
-      mocks: { $router: { back: mockBack, replace: mockReplace } },
-      components: { RouterLink: { props: ["to"], template: '<a href="/"><slot /></a>' } },
+      components: { RouterLink },
     },
   });
 
 describe("ShowDetail.vue", () => {
   beforeEach(() => {
     setActivePinia(createPinia());
-    mockBack.mockReset();
-    mockReplace.mockReset();
+    mockBack.mockClear();
+    mockReplace.mockClear();
     vi.mocked(fetchShowData).mockResolvedValue({ ok: true, data: showDetails });
     vi.mocked(fetchCastData).mockResolvedValue({ ok: true, data: [] });
   });
 
   it("matches snapshot", async () => {
     const { container } = renderComponent();
-    await waitFor(() => expect(container).not.toHaveTextContent("Loading show details..."));
+    await screen.findByRole("heading", { name: showDetails.name });
     expect(container).toMatchSnapshot();
   });
 
   it("displays loader while loading", () => {
     vi.mocked(fetchShowData).mockImplementation(() => new Promise(() => {}));
-    const { container } = renderComponent();
-    expect(container).toHaveTextContent("Loading show details...");
+    renderComponent();
+    expect(screen.getByText(/Loading show details/i)).toBeInTheDocument();
   });
 
   it("displays show details when available", async () => {
-    const { container } = renderComponent();
-    await waitFor(() => {
-      expect(container).toHaveTextContent(showDetails.name);
-    });
+    renderComponent();
+    const nameElement = await screen.findByRole("heading", { name: showDetails.name });
+    expect(nameElement).toBeInTheDocument();
   });
 
   it("displays error message when show failed to load", async () => {
@@ -103,10 +103,9 @@ describe("ShowDetail.vue", () => {
       ok: false,
       error: { type: "SERVER", status: 500 },
     });
-    const { container } = renderComponent();
-    await waitFor(() => {
-      expect(container).toHaveTextContent("Failed to load show details. Please try again later.");
-    });
+    renderComponent();
+    const errorMsg = await screen.findByText(/Failed to load show details/i);
+    expect(errorMsg).toBeInTheDocument();
   });
 
   it("redirects to not-found when show does not exist", async () => {
@@ -119,7 +118,7 @@ describe("ShowDetail.vue", () => {
 
   it("renders a back to shows link", async () => {
     renderComponent();
-    await waitFor(() => expect(screen.getByText(/back to shows/i)).toBeInTheDocument());
-    expect(screen.getByRole("link", { name: /back to shows/i })).toBeInTheDocument();
+    const link = await screen.findByRole("link", { name: /back to shows/i });
+    expect(link).toBeInTheDocument();
   });
 });

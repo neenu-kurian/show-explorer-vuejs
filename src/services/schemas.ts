@@ -7,7 +7,7 @@ export const ImageSchema = z.object({
 
 export const ShowDtoSchema = z.object({
   id: z.number(),
-  name: z.string().optional(),
+  name: z.string().catch('Unknown'),
   genres: z
     .array(z.string().nullable().catch(null))
     .transform((items) => items.filter((item): item is string => item !== null))

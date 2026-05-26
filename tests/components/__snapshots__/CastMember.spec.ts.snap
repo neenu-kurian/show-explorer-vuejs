@@ -10,8 +10,7 @@ exports[`CastMember.vue > matches snapshot 1`] = `
     >
       <img
         alt="Sonja Sohn"
-        class="w-full h-full object-cover"
-        loading="lazy"
+        data-testid="mock-poster"
         src="https://static.tvmaze.com/uploads/images/medium_portrait/4/10304.jpg"
       />
     </div>

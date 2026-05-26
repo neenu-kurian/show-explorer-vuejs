@@ -7,21 +7,23 @@ exports[`ShowCard.vue > matches snapshot 1`] = `
   >
     <a
       class="rounded-xl focus-ring"
-      data-testid="/show/42"
       href="/show/42"
-      role="link"
     >
       
       <article>
         <div
           class="w-64 h-96 bg-white rounded-xl hover:-translate-y-1 overflow-hidden relative shadow-xl flex flex-col transition duration-200 ease-in-out"
         >
-          <img
-            alt="The Wire"
+          <div
             class="w-full h-full object-cover"
-            loading="lazy"
-            src="https://static.tvmaze.com/uploads/images/medium_portrait/504/1260189.jpg"
-          />
+          >
+            <img
+              alt="The Wire"
+              data-testid="app-image"
+              loading="lazy"
+              src="https://static.tvmaze.com/uploads/images/medium_portrait/504/1260189.jpg"
+            />
+          </div>
           <span
             class="top-3 right-3 bg-black/80 text-white px-2.5 py-1.5 rounded-badge text-sm"
             data-testid="show-rating"

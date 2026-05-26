@@ -5,7 +5,7 @@ exports[`ShowDetail.vue > matches snapshot 1`] = `
   <div>
     <a
       class="inline-flex ml-3 items-center gap-2 cursor-pointer font-medium my-7 text-base text-black hover:opacity-70 focus-visible:outline-none focus-ring"
-      href="/"
+      href="[object Object]"
     >
       
       <svg
@@ -79,7 +79,17 @@ exports[`ShowDetail.vue > matches snapshot 1`] = `
         <div
           class="mb-8 leading-relaxed text-black whitespace-pre-line"
         >
-          The first season of The Wire (2002) concentrated on the often-futile efforts of police to infiltrate a West Baltimore drug ring headed by Avon Barksdale and his lieutenant, Stringer Bell. In Seasons Two and Three, as the Barksdale investigation escalated, new storylines involving pressures on the working class and the city's political leadership were introduced. Season Four focused on the stories of several young boys in the public school system, struggling with problems at home and the lure of the corner - set against the rise of a new drug empire in West Baltimore and a new Mayor in City Hall. The fifth and final season of The Wire centers on the media's role in addressing - or failing to address - the fundamental political, economic and social realities depicted over the course of the series, while also resolving storylines of the numerous characters woven throughout the narrative arc of the show.
+          <p>
+            The first season of 
+            <b>
+              The Wire
+            </b>
+             (2002) concentrated on the often-futile efforts of police to infiltrate a West Baltimore drug ring headed by Avon Barksdale and his lieutenant, Stringer Bell. In Seasons Two and Three, as the Barksdale investigation escalated, new storylines involving pressures on the working class and the city's political leadership were introduced. Season Four focused on the stories of several young boys in the public school system, struggling with problems at home and the lure of the corner - set against the rise of a new drug empire in West Baltimore and a new Mayor in City Hall. The fifth and final season of 
+            <i>
+              The Wire
+            </i>
+             centers on the media's role in addressing - or failing to address - the fundamental political, economic and social realities depicted over the course of the series, while also resolving storylines of the numerous characters woven throughout the narrative arc of the show.
+          </p>
         </div>
       </div>
     </div>

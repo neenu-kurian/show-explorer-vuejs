@@ -1,14 +1,12 @@
-import { render, screen } from "@testing-library/vue";
-import "@testing-library/jest-dom";
 import SearchResults from "@/components/SearchResults.vue";
-import { shows } from "../testdata";
-import type { Show } from "@/types/show";
 import { SHOW_ERRORS } from "@/constants";
-import { describe, expect, it, vi } from "vitest";
+import type { Show } from "@/types/show";
+import { render, screen } from "@testing-library/vue";
+import { shows } from "../testdata";
 
 vi.mock("@/components/ShowCard.vue", () => ({
   default: {
-    template: '<div role="list-item"></div>',
+    template: '<div></div>',
     props: ["show"],
   },
 }));
@@ -41,8 +39,8 @@ describe("SearchResults.vue", () => {
   it("matches snapshot", () => {
     const { container } = renderComponent({
       searchQuery: "test",
-      shows: [],
-      loading: true,
+      shows,
+      hasSearched: true,
     });
     expect(container).toMatchSnapshot();
   });
@@ -55,8 +53,8 @@ describe("SearchResults.vue", () => {
 
   it("renders error message when there is error", () => {
     renderComponent({ searchError: SHOW_ERRORS.SHOW_FETCH_ERROR });
-    const error = screen.getByText(SHOW_ERRORS.SHOW_FETCH_ERROR);
-    expect(error).toBeInTheDocument();
+    const alert = screen.getByRole("alert");
+    expect(alert).toHaveTextContent(SHOW_ERRORS.SHOW_FETCH_ERROR);
   });
 
   it("renders empty state when no results are found", () => {
@@ -67,6 +65,11 @@ describe("SearchResults.vue", () => {
     });
     const noResultText = screen.getByText('No shows found matching "fddgdfgdfgdfgd"');
     expect(noResultText).toBeInTheDocument();
+  });
+
+    it("does not render empty state before a search has been made", () => {
+    renderComponent({ shows: [], hasSearched: false });
+    expect(screen.queryByText(/no shows found/i)).not.toBeInTheDocument();
   });
 
   it("renders shows when search finds results", () => {
