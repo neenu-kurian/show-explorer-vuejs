@@ -24,7 +24,7 @@
       <div v-if="show.genres.length" class="flex gap-2 mb-4 flex-wrap">
         <InfoChip v-for="genre in show.genres" :key="genre" :label="genre" />
       </div>
-      <div class="mb-8 leading-relaxed text-black whitespace-pre-line" v-html="summaryText"></div>
+      <div class="mb-8 leading-relaxed text-black whitespace-pre-line">{{ summaryText }}</div>
     </div>
   </div>
 </template>

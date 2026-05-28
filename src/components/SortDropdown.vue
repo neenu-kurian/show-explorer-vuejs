@@ -2,8 +2,8 @@
   <div class="relative inline-flex items-center bg-gray-100 rounded-lg px-3 md:min-w-dropdown">
     <select
       :value="modelValue"
-      aria-label="Sort shows by rating"
-      name="select-sort"
+      aria-label="Sort shows by"
+      id="sort-select"
       @change="onChange"
       class="appearance-none bg-transparent border-none py-2.5 pr-6 text-sm text-gray-900 w-full cursor-pointer font-medium focus-ring"
     >

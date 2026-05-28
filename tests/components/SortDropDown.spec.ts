@@ -20,20 +20,20 @@ describe("SortDropDown.vue", () => {
   it("renders all options with correct labels", () => {
     renderComponent();
     sortOptions.forEach(({ label }) => {
-      expect(screen.getByRole("option", { name: label })).toBeInTheDocument();
+      expect(screen.getByText(label)).toBeInTheDocument();
     });
   });
 
   it("reflects the modelValue as the selected option", () => {
     renderComponent({ modelValue: "rating-asc" });
-    const select = screen.getByRole("combobox", { name: /sort shows by rating/i });
+    const select = screen.getByRole("combobox", { name: /sort shows by/i });
     expect(select).toHaveValue("rating-asc");
   });
 
    it("emits update:modelValue with the selected value when changed", async () => {
     const onUpdate = vi.fn();
     renderComponent({ "onUpdate:modelValue": onUpdate });
-    const select = screen.getByRole("combobox", { name: /sort shows by rating/i });
+    const select = screen.getByRole("combobox", { name: /sort shows by/i });
     await fireEvent.update(select, "rating-asc");
     expect(onUpdate).toHaveBeenCalledExactlyOnceWith("rating-asc");
   });

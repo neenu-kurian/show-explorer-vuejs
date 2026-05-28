@@ -1,3 +1,5 @@
 <template>
-  <router-view />
+  <main class="min-h-screen">
+    <router-view />
+  </main>
 </template>

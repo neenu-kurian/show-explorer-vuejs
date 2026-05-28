@@ -2,9 +2,9 @@
   <div class="flex flex-col gap-2 mb-5">
     <RouterLink
       :to="{ name: 'show-detail', params: { id: show.id } }"
+      :aria-label="`View details for ${show.name}`"
       class="rounded-xl focus-ring"
     >
-      <article>
         <div
           class="w-64 h-96 bg-white rounded-xl hover:-translate-y-1 overflow-hidden relative shadow-xl flex flex-col transition duration-200 ease-in-out"
         >
@@ -23,7 +23,6 @@
             class="top-3 right-3 bg-black/80 text-white px-2.5 py-1.5 rounded-badge text-sm"
           />
         </div>
-      </article>
     </RouterLink>
     <h3 class="text-base font-medium mt-2 mb-0 text-gray-800 text-left px-2 overflow-hidden">
       {{ show.name }}

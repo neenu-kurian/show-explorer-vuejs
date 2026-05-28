@@ -1,5 +1,6 @@
 <template>
   <div
+    role="img"
     class="flex gap-1 items-center text-white absolute"
     :aria-label="`Rating: ${score.toFixed(1)} out of 10`"
   >

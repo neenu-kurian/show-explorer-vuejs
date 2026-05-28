@@ -9,7 +9,7 @@
           <h2 class="text-heading text-gray-900" :id="`genre-${genre}`">{{ genre }}</h2>
           <ArrowRightIcon class="w-5 h-5 text-gray-600" />
         </div>
-        <ul class="flex gap-5 overflow-x-auto scroll-smooth pb-4 w-full list-none p-0 m-0">
+        <ul tabindex="0" class="flex gap-5 overflow-x-auto scroll-smooth pb-4 w-full list-none p-0 m-0">
           <li v-for="show in showsByGenre" :key="show.id">
             <ShowCard :show="show" />
           </li>
